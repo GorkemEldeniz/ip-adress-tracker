@@ -1,0 +1,188 @@
+@import url("./reset.css");
+
+:root {
+  --very-dark-gray: hsl(0, 0%, 17%);
+  --dark-gray: hsl(0, 0%, 59%);
+}
+
+body {
+  font-size: 18px;
+  font-family: 'Rubik', sans-serif;
+}
+
+#root,
+main {
+  height: 100vh;
+}
+
+main {
+  max-width: 1440px;
+  margin-inline: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.search {
+  height: 40%;
+  background-image: url("../../images/pattern-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 1rem;
+  color: #fff;
+  gap: 1rem;
+}
+
+form {
+  width: 50%;
+}
+
+form div {
+  display: flex;
+  width: 100%;
+}
+
+input {
+  border: none;
+  padding: 1rem 1.25rem;
+  border-top-left-radius: .75rem;
+  border-bottom-left-radius: .75rem;
+  flex-grow: 10;
+  cursor: pointer;
+}
+
+button {
+  border: none;
+  background-color: #000;
+  border-top-right-radius: .75rem;
+  border-bottom-right-radius: .75rem;
+  flex-grow: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background-color 200ms ease;
+}
+
+span.popup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.25rem;
+}
+
+span.popup>button {
+  border: 1px solid #000;
+  border-radius: 1rem;
+  text-align: center;
+  color: #fff;
+  padding: 0.5rem 1rem;
+}
+
+button:hover {
+  background-color: hsl(0, 0%, 17%, 0.8);
+}
+
+button.disabled {
+  background-color: hsl(0, 0%, 17%, 0.8);
+}
+
+input::placeholder {
+  color: var(--dark-gray);
+}
+
+.result {
+  background-color: #fff;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  width: 80%;
+  min-width: fit-content;
+  z-index: 99;
+  gap: 0 2rem;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.result>div {
+  max-width: 15ch;
+  padding-inline-start: 2rem;
+  position: relative;
+}
+
+.result>div:not(:nth-child(1))::before {
+  content: "";
+  inset: 10px 0;
+  width: 1px;
+  height: 80%;
+  position: absolute;
+  background-color: var(--dark-gray);
+}
+
+.result>div>h2 {
+  color: var(--dark-gray);
+  font-size: .75rem;
+  font-weight: 500;
+  letter-spacing: 0.25ch;
+}
+
+.result>div>span {
+  color: var(--very-dark-gray);
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+
+.leaflet-container {
+  background-color: dodgerblue;
+  flex-grow: 1;
+  z-index: 1;
+}
+
+button {
+  z-index: 99;
+}
+
+.error {
+  outline: 1px solid red;
+}
+
+.loader {
+  font-size: 2rem;
+  text-align: center;
+}
+
+@media (max-width:800px) {
+
+  body,
+  html {
+    font-size: 16px;
+  }
+
+  .result {
+    top: 25%;
+    padding: 1rem;
+  }
+
+  form {
+    width: 80%;
+  }
+
+  .result>div {
+    grid-column: span 4;
+    max-width: unset;
+    text-align: center;
+    padding: 0;
+  }
+
+  .result>div::before {
+    opacity: 0;
+  }
+}
