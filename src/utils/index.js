@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const getIp = async (url = import.meta.env.VITE_DEFAULT_API_URL) => {
+const getIp = async (url = import.meta.env.VITE_IP_API) => {
 	try {
 		let IP = await axios.get(url);
 		return IP.data;
