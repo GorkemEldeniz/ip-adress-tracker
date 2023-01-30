@@ -28,7 +28,7 @@ function SearchBar() {
 			inputRef.current.classList.add("error");
 			toast((t) => (
 				<span className='popup'>
-					please insert domain address or Ip address.
+					Please insert domain address or IP address.
 					<button onClick={() => toast.dismiss(t.id)}>Dismiss</button>
 				</span>
 			));
