@@ -100,9 +100,10 @@ input::placeholder {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   border-radius: 0.75rem;
-  padding: 2rem;
+  padding: 1rem;
   width: 80%;
   min-width: fit-content;
+  min-height: 5rem;
   z-index: 99;
   gap: 0 2rem;
   position: absolute;
@@ -164,11 +165,6 @@ button {
   body,
   html {
     font-size: 16px;
-  }
-
-  .result {
-    top: 25%;
-    padding: 1rem;
   }
 
   form {
