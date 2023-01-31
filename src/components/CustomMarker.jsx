@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Marker, useMap, Popup } from "react-leaflet";
 import { getContext } from "../context";
+import { customIcon } from "../Icon/index";
 
 function CustomMarker() {
 	let {
@@ -18,6 +19,7 @@ function CustomMarker() {
 
 	return (
 		<Marker
+			icon={customIcon}
 			position={[lat, lng]}
 			eventHandlers={{
 				click: (e) => {

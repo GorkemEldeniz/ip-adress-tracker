@@ -7,12 +7,6 @@ import { getContext } from "./context";
 import { Toaster } from "react-hot-toast";
 function App() {
 	const { isLoading } = getContext();
-	const render = useRef(0);
-
-	useEffect(() => {
-		console.log(render.current);
-		render.current += 1;
-	});
 
 	if (isLoading) return <div className='loader'>Loading...</div>;
 	return (

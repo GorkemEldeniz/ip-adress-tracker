@@ -160,6 +160,11 @@ button {
   text-align: center;
 }
 
+.leaflet-div-icon {
+  border: none !important;
+  background-color: unset !important;
+}
+
 @media (max-width:800px) {
 
   body,
