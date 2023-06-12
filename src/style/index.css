@@ -23,6 +23,11 @@ main {
   flex-direction: column;
 }
 
+#root:has(>svg) {
+  display: grid;
+  place-content: center;
+}
+
 .search {
   height: 40%;
   background-image: url("../../images/pattern-bg.png");

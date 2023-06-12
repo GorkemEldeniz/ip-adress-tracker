@@ -13,6 +13,7 @@ export const ContextProvider = ({ children }) => {
 	useEffect(() => {
 		const abortController = new AbortController();
 		(async () => {
+			setIsLoading(true);
 			let data = await fetch(import.meta.env.VITE_USER_IP_API, {
 				signal: abortController.signal,
 			});
