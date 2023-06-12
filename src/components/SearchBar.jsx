@@ -3,13 +3,14 @@ import arrowIcon from "../../images/icon-arrow.svg";
 import { getIp, isDomain, isIP } from "../utils/index";
 import { getContext } from "../context/index";
 import { toast } from "react-hot-toast";
+import Loader from "./Loader";
 
 function SearchBar() {
 	const { setApiFetchData } = getContext();
 	const [inputValue, setInputValue] = useState("");
-	const inputRef = useRef(null);
 	const [error, setError] = useState(false);
 	const [buttonDisabled, setButtonDisabled] = useState(false);
+	const [loading, setIsLoading] = useState(false);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -26,17 +27,17 @@ function SearchBar() {
 		} else {
 			//default placeholder url
 			setInputValue("");
-			inputRef.current.classList.add("error");
 			setButtonDisabled(false);
 			setError(true);
 		}
+		setIsLoading(true);
 		const fetchedData = await getIp(url.href + searchParams);
+		setIsLoading(false);
 		setButtonDisabled(false);
 		if (fetchedData.code === 400) {
 			setInputValue("");
 			setError(true);
 		} else {
-			inputRef.current.classList.remove("error");
 			setApiFetchData(fetchedData);
 			setError(false);
 		}
@@ -60,7 +61,6 @@ function SearchBar() {
 					type='text'
 					name='search'
 					id=''
-					ref={inputRef}
 					value={inputValue}
 					placeholder='Search for any IP address or domain'
 					onChange={(e) => setInputValue(e.target.value)}
@@ -70,7 +70,11 @@ function SearchBar() {
 					type='submit'
 					disabled={buttonDisabled}
 				>
-					<img src={arrowIcon} alt='ArrowIcon' />
+					{loading ? (
+						<Loader width='11px' height='14px' />
+					) : (
+						<img src={arrowIcon} alt='ArrowIcon' />
+					)}
 				</button>
 			</div>
 		</form>

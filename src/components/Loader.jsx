@@ -1,4 +1,4 @@
-const Loader = () => {
+const Loader = ({ width, height }) => {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -9,8 +9,8 @@ const Loader = () => {
 				display: "block",
 				shapeRendering: "auto",
 			}}
-			width='200px'
-			height='200px'
+			width={width}
+			height={height}
 			viewBox='0 0 100 100'
 			preserveAspectRatio='xMidYMid'
 		>

@@ -10,7 +10,7 @@ import Loader from "./components/Loader";
 function App() {
 	const { isLoading } = getContext();
 
-	if (isLoading) return <Loader />;
+	if (isLoading) return <Loader width='200px' height='200px' />;
 	return (
 		<main>
 			<Toaster position='top-right' reverseOrder={false} />
