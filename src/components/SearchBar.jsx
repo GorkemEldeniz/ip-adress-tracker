@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import arrowIcon from "../../images/icon-arrow.svg";
 import { getIp, isDomain, isIP } from "../utils/index";
 import { getContext } from "../context/index";
@@ -8,6 +8,7 @@ function SearchBar() {
 	const { setApiFetchData } = getContext();
 	const [inputValue, setInputValue] = useState("");
 	const inputRef = useRef(null);
+	const [error, setError] = useState(false);
 	const [buttonDisabled, setButtonDisabled] = useState(false);
 
 	const handleSubmit = async (e) => {
@@ -26,24 +27,31 @@ function SearchBar() {
 			//default placeholder url
 			setInputValue("");
 			inputRef.current.classList.add("error");
-			toast((t) => (
-				<span className='popup'>
-					Please insert domain address or IP address.
-					<button onClick={() => toast.dismiss(t.id)}>Dismiss</button>
-				</span>
-			));
 			setButtonDisabled(false);
-			return;
+			setError(true);
 		}
 		const fetchedData = await getIp(url.href + searchParams);
 		setButtonDisabled(false);
-		if (typeof fetchedData !== "object") {
+		if (fetchedData.code === 400) {
 			setInputValue("");
+			setError(true);
 		} else {
 			inputRef.current.classList.remove("error");
 			setApiFetchData(fetchedData);
+			setError(false);
 		}
 	};
+
+	useEffect(() => {
+		if (error) {
+			toast((t) => (
+				<span className='popup'>
+					Please insert valid domain or ip address
+					<button onClick={() => toast.dismiss(t.id)}>Dismiss</button>
+				</span>
+			));
+		}
+	}, [error]);
 
 	return (
 		<form onSubmit={handleSubmit}>
