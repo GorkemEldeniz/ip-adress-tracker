@@ -47,7 +47,7 @@ To use the IP Address Tracker, follow these steps:
 4. Run the app on http://localhost:<your_port>
 
 ```bash
-  npm run dev --port =<your_port>
+  npm run dev --port=<your_port>
 ```
 
 5. Enter the IP address you want to track in the input field and press Enter or click the "Track" button.
